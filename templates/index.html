@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!-- BARRA DE CATEGORÍAS -->
+<div class="categories-bar">
+    {% for cat in categories %}
+        <a href="/categoria/{{ cat }}">{{ cat }}</a>
+    {% endfor %}
+</div>
+
+<!-- MOSTRARA INFORMACIÓN DE LOS PRODUCTOS -->
+
+<div class="product-grid">
+    {% for p in products %}
+    <div class="card product-card">
+        <div class="img-container">
+            <img src="{{ p.image }}" alt="{{ p.name }}">
+        </div>
+
+        <h3>{{ p.name }}</h3>
+
+        <p class="price">
+            ${{ "{:,}".format(p.price) }}
+        </p>
+
+        <a href="/producto/{{ p.id }}" class="detail-link">Ver detalle</a>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

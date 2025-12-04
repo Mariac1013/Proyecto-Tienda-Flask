@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1 class="category-title">
+    Categoría: <span>{{ category }}</span>
+</h1>
+
+{% if empty %}
+    <div class="empty-message">
+        <p>No hay productos en esta categoría.</p>
+    </div>
+{% else %}
+
+<div class="product-grid">
+    {% for p in products %}
+    <div class="card product-card">
+
+        <div class="img-container">
+            <img src="{{ p.image }}" alt="{{ p.name }}">
+        </div>
+
+        <h3 class="product-name">{{ p.name }}</h3>
+
+        <p class="price">
+            ${{ "{:,}".format(p.price) }}
+        </p>
+
+        <a href="/producto/{{ p.id }}" class="detail-link">Ver detalle</a>
+    </div>
+    {% endfor %}
+</div>
+
+{% endif %}
+
+{% endblock %}

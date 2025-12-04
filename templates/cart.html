@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>🛒 Carrito de Compras</h2>
+
+<div class="cart-list">
+
+    {% if items %}
+        {% for item in items %}
+
+
+<div class="cart-item">
+    
+    <div class="item-left">
+        <img src="{{ item.image }}" alt="{{ item.name }}" class="cart-image">
+
+        <div class="text-info">
+            <h3>{{ item.name }}</h3>
+            <p class="price">${{ item.price }}</p>
+        </div>
+    </div>
+
+    <a href="/eliminar/{{ item.id }}" class="button danger">Eliminar</a> <!--Se agrego un boton  para la opción eliminar-->
+</div>
+
+        
+        {% endfor %}
+
+        <p class="total">Total: ${{ items | sum(attribute="price") }}</p>
+
+        <a href="/vaciar" class="button" style="background:#d93025;">Vaciar carrito</a>
+
+    {% else %}
+        <p class="empty">Tu carrito está vacío 🎒</p>
+    {% endif %}
+
+</div>
+
+{% endblock %}
